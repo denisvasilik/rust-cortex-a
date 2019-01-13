@@ -16,7 +16,7 @@ A combination of the following resources were used for this repository.
 
 # About the hardware
 
-I use the [Arty-Z7-20] evaluation board from [Digitlent]. Here are some links to their reference manuals:
+I use the [Arty Z7] evaluation board from [Digilent]. Here are some links to their reference manuals:
 
 * [Arty Z7]
 * [Arty Z7 Reference Manual]

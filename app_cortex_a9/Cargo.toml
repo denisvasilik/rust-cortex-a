@@ -1,0 +1,22 @@
+[package]
+name = "app_cortex_a9"
+version = "0.1.0"
+authors = ["Denis Vasilik <contact@denisvasilik.com>"]
+edition = "2018"
+
+[dependencies]
+cortex-a = { path = "/home/emb-dev/git/cortex-a" }
+# cortex-m-rt = { path = "/home/emb-dev/git/cortex-m-rt" }
+cortex-m-semihosting = { path = "/home/emb-dev/git/cortex-m-semihosting" }
+# panic-halt = "0.2.0"
+panic-abort = "0.3.1"
+
+[[bin]]
+name = "app_cortex_a9"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations

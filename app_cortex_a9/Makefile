@@ -22,8 +22,29 @@ disassemble:
 nm:
 	cargo nm --target $(TARGET) -- $(OUT_DIR)$(APP_NAME).elf | sort
 
+docker-image:
+	docker build -t qemu/armv7-cortexa9 .
+
 qemu:
 	qemu-system-arm -M $(MACHINE) -cpu $(CPU) -kernel $(OUT_DIR)$(APP_NAME).elf -nographic -S -s
+
+qemu-docker:
+	docker run --detach \
+			   --name armv7-cortexa9 \
+			   --publish 1234:1234 \
+			   --rm \
+			   -v $(shell pwd):/work \
+			   -w /work \
+			   -t qemu/armv7-cortexa9:latest \
+	qemu-system-arm -M $(MACHINE) \
+					-cpu $(CPU) \
+					-kernel $(OUT_DIR)$(APP_NAME).elf \
+					-nographic -S -s
+docker-clean:
+	docker container stop armv7-cortexa9
+
+qemu-show-log-items:
+	qemu-system-arm -M xilinx-zynq-a9 -d help
 
 debug:
 	gdb-multiarch -q $(OUT_DIR)$(APP_NAME).elf

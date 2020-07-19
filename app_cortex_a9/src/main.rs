@@ -2,7 +2,7 @@
 #![no_std]
 #![no_main]
 #![feature(global_asm)]
-#![feature(asm)]
+#![feature(llvm_asm)]
 
 extern crate panic_abort;
 
